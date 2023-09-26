@@ -25,11 +25,13 @@ function App() {
         form.append("redirect_uri", "https://test-tau-flax-17.vercel.app/");
         form.append("code", code);
 
-        const response = await axios.post(
-          "https://app.asana.com/-/oauth_token",
-          form
+        // const response = await axios.post(
+        //   "https://app.asana.com/-/oauth_token",
+        //   form
+        // );
+        const response = await axios.get(
+          `https://www.goodday.work/api/integration/asana/token?code=code`,
         );
-
         const tokenData = response.data;
         console.log("Токен Asana:", tokenData);
       } catch (error) {
