@@ -3,6 +3,7 @@ import axios from "axios";
 
 const CLIENT_ID = "1205582848933137";
 const CLIENT_SECRET = "3657eb161045ee2385959c0f7a882c99";
+const DOMEN_URL = "https://t11est.kyiv.ua/";
 function App() {
   const [code, setCode] = useState<string>("");
   useEffect(() => {
@@ -17,21 +18,13 @@ function App() {
   const handlePostClick = async () => {
     if (code) {
       try {
-       
-        const form = new FormData();
-        form.append("grant_type", "authorization_code");
-        form.append("client_id", CLIENT_ID);
-        form.append("client_secret", CLIENT_SECRET);
-        form.append("redirect_uri", "https://test-tau-flax-17.vercel.app/");
-        form.append("code", code);
-
-        // const response = await axios.post(
-        //   "https://app.asana.com/-/oauth_token",
-        //   form
-        // );
         const response = await axios.get(
-          `https://www.goodday.work/api/integration/asana/token?code=code`,
+          `https://www.goodday.work/api/integration/asana/token?code=${code}`
         );
+        const responseTwo = await axios.get(
+          `https://www.goodday.work/api/app/ping`
+        );
+        console.log(responseTwo, "responseTwo");
         const tokenData = response.data;
         console.log("Токен Asana:", tokenData);
       } catch (error) {
@@ -46,11 +39,11 @@ function App() {
       {code ? (
         <>
           <p>code: {code}</p>
-          <button onClick={handlePostClick}>POST</button>
+          <button onClick={handlePostClick}>GET</button>
         </>
       ) : (
         <a
-          href={`https://app.asana.com/-/oauth_authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=https://test-tau-flax-17.vercel.app/`}
+          href={`https://app.asana.com/-/oauth_authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${DOMEN_URL}`}
         >
           Authenticate with Asana
         </a>
