@@ -22,7 +22,7 @@ function App() {
         form.append("grant_type", "authorization_code");
         form.append("client_id", CLIENT_ID);
         form.append("client_secret", CLIENT_SECRET);
-        form.append("redirect_uri", "https://t11est.kyiv.ua/");
+        form.append("redirect_uri", "https://test-j9qxlun94-serhiis-projects-1f8fabb1.vercel.app/");
         form.append("code", code);
 
         const response = await axios.post(
@@ -48,7 +48,7 @@ function App() {
         </>
       ) : (
         <a
-          href={`https://app.asana.com/-/oauth_authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=https%3A%2F%2Ft11est.kyiv.ua%2F`}
+          href={`https://app.asana.com/-/oauth_authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=https://test-j9qxlun94-serhiis-projects-1f8fabb1.vercel.app/`}
         >
           Authenticate with Asana
         </a>
