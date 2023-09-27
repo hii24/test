@@ -32,6 +32,15 @@ function App() {
       }
     }
   };
+  const handleGetClick = async () => {
+    try {
+      const response = await axios.get(`https://www.goodday.work/api/app/ping`);
+
+      console.log("get response:", response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <>
@@ -43,11 +52,12 @@ function App() {
         </>
       ) : (
         <a
-          href={`https://app.asana.com/-/oauth_authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${DOMEN_URL}`}
+        href={`https://app.asana.com/-/oauth_authorize?response_type=code&client_id=${CLIENT_ID}&redirect_uri=${DOMEN_URL}`}
         >
           Authenticate with Asana
         </a>
       )}
+      <button onClick={handleGetClick}>OK</button>
     </>
   );
 }
